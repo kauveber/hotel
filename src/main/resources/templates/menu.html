@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
 <head>
 <meta charset="UTF-8">
 </head>
@@ -8,8 +10,10 @@
 		<div class="nav-wrapper container">
 			<a href="/" class="brand-logo">Hotel</a>
 			<ul id="nav-mobile" class="right hide-on-med-and-down">
-				<li><a href="/">Home</a></li>
-				<li><a href="">Login</a></li>
+				<li><a href="#" th:href="@{/}">Inicio</a></li>
+				<li sec:authorize="!isAuthenticated()"><a href="#" th:href="@{/login}">Login</a></li>
+				<li sec:authorize="isAuthenticated()"><a href="#" th:href="@{/reserva}">Reserva</a></li>
+				<li sec:authorize="hasRole('ADMINISTRATIVO')"><a href="#" th:href="@{/cadastrar_quarto}">Cadastrar Quarto</a></li>
 			</ul>
 		</div>
 	</nav>
